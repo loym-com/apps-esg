@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_product_category_form_inherit" model="ir.ui.view">
+        <field name="name">product.category.form.inherit</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="parent_token_category" invisible="1"/>
+                <field
+                    name="token_category"
+                    readonly="parent_token_category"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_product_category_list_inherit" model="ir.ui.view">
+        <field name="name">product.category.list.inherit</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_list_view"/>
+        <field name="arch" type="xml">
+            <list position="inside">
+                <field name="token_category" optional="hide"/>
+            </list>
+        </field>
+    </record>
+</odoo>

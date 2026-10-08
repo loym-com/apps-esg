@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_analytics_dashboard_page" name="Customer Portal Analytics Dashboard">
+        <t t-call="website.layout">
+            <t t-set="title">Customer Portal</t>
+
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap');
+                #wrapwrap > header,
+                #wrapwrap > footer,
+                .o_website_cookies_bar { display: none !important; }
+                #wrapwrap { padding-top: 0 !important; }
+                body { margin: 0; padding: 0; background: #f0f2f5; font-family: 'Inter', 'Segoe UI', sans-serif !important; }
+                html, body, #wrapwrap { height: 100vh !important; overflow: hidden !important; }
+            </style>
+
+            <header style="margin: 0; background: transparent; padding-top: 10px;">
+                <div class="container-fluid px-4">
+                    <div class="row align-items-center py-2">
+                        <div class="col-12">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <a href="/my/home" class="btn btn-white rounded-pill px-3 shadow-sm" style="font-size:12px; background: white; border: 1px solid #e5e7eb; color: #374151; font-weight: 500;">
+                                    <i class="fa fa-home me-1"></i>Back to Home
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="portal_analytics_dashboard_root"
+                t-att-data-user-name="user.name"
+                t-att-data-user-email="user.email"/>
+
+            <t t-call-assets="smr_customer_portal.portal_analytics_assets"
+               t-js="true" t-css="false"/>
+        </t>
+    </template>
+
+    <template id="portal_analytics_assets" name="Portal Analytics Dashboard Assets">
+        <script type="text/javascript"
+                src="/smr_customer_portal/static/src/js/portal_dashboard.js"/>
+    </template>
+
+</odoo>

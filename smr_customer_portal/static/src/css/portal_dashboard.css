@@ -1,0 +1,690 @@
+/* ============================================================
+   SMR Customer Portal Dashboard — Premium Stylesheet
+   ============================================================ */
+
+/* ── Reset & Base ───── */
+#portal_analytics_dashboard_root {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #f0f2f5;
+    color: #1e1e5a;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#portal_analytics_dashboard_root *,
+#portal_analytics_dashboard_root *::before,
+#portal_analytics_dashboard_root *::after {
+    box-sizing: border-box;
+}
+
+/* ── Scrollbar ─ */
+#portal_analytics_dashboard_root::-webkit-scrollbar {
+    width: 6px;
+}
+
+#portal_analytics_dashboard_root::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#portal_analytics_dashboard_root::-webkit-scrollbar-thumb {
+    background: rgba(45, 45, 138, 0.2);
+    border-radius: 3px;
+}
+
+#portal_analytics_dashboard_root::-webkit-scrollbar-thumb:hover {
+    background: rgba(45, 45, 138, 0.4);
+}
+
+/* ── Dashboard Wrapper  */
+.pd-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px 24px 40px;
+}
+
+/* ── Filter Bar  */
+.pd-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.pd-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.pd-filter-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1e1e5a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pd-filter-input {
+    padding: 8px 12px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1e1e5a;
+    background: #fff;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.pd-filter-input:focus {
+    border-color: #2d2d8a;
+    box-shadow: 0 0 0 3px rgba(45, 45, 138, 0.1);
+}
+
+.pd-filter-select {
+    padding: 8px 32px 8px 12px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1e1e5a;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236b7280'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z'/%3E%3C/svg%3E") no-repeat right 10px center;
+    background-size: 16px;
+    appearance: none;
+    outline: none;
+    width: 100%;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.pd-filter-select:focus {
+    border-color: #2d2d8a;
+    box-shadow: 0 0 0 3px rgba(45, 45, 138, 0.1);
+}
+
+/* ── KPI Cards Row ──── */
+.pd-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1200px) {
+    .pd-kpi-row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .pd-kpi-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .pd-kpi-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pd-kpi-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px 16px 14px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pd-kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(45, 45, 138, 0.1);
+}
+
+.pd-kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2d2d8a, #5b5bbd);
+}
+
+.pd-kpi-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #2d2d8a;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    min-height: 28px;
+}
+
+.pd-kpi-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1e1e5a;
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+}
+
+.pd-kpi-comparison {
+    font-size: 11px;
+    color: #6b7280;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.pd-kpi-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 7px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.pd-kpi-badge.up {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.pd-kpi-badge.down {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.pd-kpi-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+}
+
+.pd-kpi-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pd-kpi-bar-label {
+    font-size: 9px;
+    font-weight: 600;
+    color: #9ca3af;
+    min-width: 42px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.pd-kpi-bar-track {
+    flex: 1;
+    height: 6px;
+    background: #f3f4f6;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.pd-kpi-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pd-kpi-bar-fill.current {
+    background: linear-gradient(90deg, #2d2d8a, #5b5bbd);
+}
+
+.pd-kpi-bar-fill.previous {
+    background: #22c55e;
+}
+
+/* ── Chart Grid  */
+.pd-charts-row {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.pd-charts-row.two-col {
+    grid-template-columns: 1.6fr 1fr;
+}
+
+.pd-charts-row.three-col {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.pd-charts-row.two-equal {
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 992px) {
+
+    .pd-charts-row.two-col,
+    .pd-charts-row.three-col,
+    .pd-charts-row.two-equal {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Chart Card  */
+.pd-chart-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px 20px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s ease;
+    position: relative;
+    min-height: 180px;
+}
+
+.pd-chart-card:hover {
+    box-shadow: 0 4px 16px rgba(45, 45, 138, 0.08);
+}
+
+.pd-chart-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e1e5a;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pd-chart-title-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* ── Legend ───── */
+.pd-legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.pd-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.pd-legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* ── Canvas container ─ */
+.pd-canvas-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.pd-canvas-wrap canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* ── Donut Center Label ───────────────────────────────────── */
+.pd-donut-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.pd-donut-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+}
+
+.pd-donut-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pd-donut-label-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #374151;
+}
+
+.pd-donut-label-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.pd-donut-label-value {
+    font-weight: 700;
+    color: #1e1e5a;
+    margin-left: auto;
+    padding-left: 8px;
+}
+
+/* ── Gauge ───── */
+.pd-gauge-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+/* ── Treemap ──────────────────────────────────────────────── */
+.pd-treemap {
+    display: grid;
+    grid-template-columns: 33fr 34fr 17fr 12fr 4fr;
+    grid-template-rows: 60fr 40fr;
+    gap: 2px;
+    min-height: 250px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.pd-treemap::after {
+    content: '';
+    background: #b68ece;
+    grid-area: 2 / 5 / 3 / 6;
+    display: block;
+}
+
+.pd-treemap-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 8px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    transition: opacity 0.2s;
+    cursor: default;
+}
+
+.pd-treemap-block:nth-child(1) {
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+.pd-treemap-block:nth-child(2) {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.pd-treemap-block:nth-child(3) {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.pd-treemap-block:nth-child(4) {
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.pd-treemap-block:nth-child(5) {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.pd-treemap-block:nth-child(6) {
+    grid-area: 1 / 4 / 2 / 6;
+}
+
+.pd-treemap-block:nth-child(7) {
+    grid-area: 2 / 4 / 3 / 5;
+}
+
+.pd-treemap-block:hover {
+    opacity: 0.85;
+}
+
+.pd-treemap-block-label {
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.95;
+    line-height: 1.2;
+}
+
+.pd-treemap-block-value {
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+/* ── Horizontal Bar Chart ─────────────────────────────────── */
+.pd-hbar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pd-hbar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pd-hbar-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #6b7280;
+    min-width: 120px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pd-hbar-track {
+    flex: 1;
+    height: 16px;
+    background: #f3f4f6;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.pd-hbar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2d2d8a, #3b3bb0);
+    border-radius: 4px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Recent Transactions Table ────────────────────────────── */
+.pd-table-wrap {
+    overflow-x: auto;
+    border-radius: 8px;
+}
+
+.pd-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 12px;
+}
+
+.pd-table thead th {
+    background: #f8f9fc;
+    color: #1e1e5a;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 10px 14px;
+    border-bottom: 2px solid #e5e7eb;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+}
+
+.pd-table tbody tr {
+    transition: background 0.15s;
+}
+
+.pd-table tbody tr:hover {
+    background: #f8f9fc;
+}
+
+.pd-table tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #374151;
+    white-space: nowrap;
+}
+
+.pd-status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.pd-status-badge.available {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.pd-status-badge.retired {
+    background: #e0e7ff;
+    color: #4338ca;
+}
+
+/* ── Loading State ──── */
+.pd-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+    gap: 14px;
+}
+
+.pd-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e5e7eb;
+    border-top-color: #2d2d8a;
+    border-radius: 50%;
+    animation: pd-spin 0.7s linear infinite;
+}
+
+@keyframes pd-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.pd-loading-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: #9ca3af;
+}
+
+/* ── Map placeholder ── */
+.pd-map-placeholder {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5c6bc0;
+    font-size: 13px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.pd-map-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Cellipse cx='400' cy='200' rx='350' ry='160' fill='none' stroke='%239fa8da' stroke-width='0.5' opacity='0.5'/%3E%3Cellipse cx='400' cy='200' rx='250' ry='115' fill='none' stroke='%239fa8da' stroke-width='0.5' opacity='0.3'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* ── Waterfall bar ──── */
+.pd-waterfall-container {
+    position: relative;
+    width: 100%;
+}
+
+/* ── Animations  */
+@keyframes pd-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pd-animate-in {
+    animation: pd-fadeIn 0.4s ease-out both;
+}
+
+.pd-animate-in:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.pd-animate-in:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.pd-animate-in:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.pd-animate-in:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.pd-animate-in:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+
+.dbBox {
+    /* background: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)), url('/user_registration_owl/static/src/img/banner_dev.png') center/cover; */
+    background: linear-gradient(to right, #0d320d, #4e3d2a, #e52e7100), url('/smr_customer_portal/static/src/img/banner_dev.png') center/cover;
+    border-radius: 12px;
+    padding: 40px 36px;
+    color: white;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

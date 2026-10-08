@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- No minted location, since Dropship only works with the Customers location -->
+        <record id="stock_location_cc_burned" model="stock.location">
+            <field name="name">CC Burned</field>
+            <field name="usage">customer</field>
+            <field name="location_id" ref="stock.stock_location_customers"/>
+        </record>
+        <record id="stock_location_cc_wiped" model="stock.location">
+            <field name="name">CC Wiped</field>
+            <field name="usage">customer</field>
+            <field name="location_id" ref="stock.stock_location_customers"/>
+        </record>
+    </data>
+</odoo>

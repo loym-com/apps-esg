@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_report_product_properties" model="ir.actions.report">
+        <field name="name">Product Properties</field>
+        <field name="model">product.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">product_property.report_product_properties_document</field>
+        <field name="report_file">product_property.report_product_properties_document</field>
+        <field name="binding_model_id" ref="product.model_product_template" />
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+        <field name="multi" eval="False" />
+    </record>
+
+    <template id="report_product_properties_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Product Fields</h2>
+                        <table class="table table-sm o_main_table">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 30%;">Product Category</th>
+                                    <td>
+                                        <span t-esc="doc.categ_id.display_name or ''" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <td>
+                                        <span t-esc="doc.name" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h2>Product Properties</h2>
+                        <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%;">Code</th>
+                                    <th style="width: 30%;">Label</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="report_properties" t-value="doc._get_properties()" />
+                                <tr t-foreach="report_properties" t-as="prop">
+                                    <td>
+                                        <span t-esc="prop.get('code')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="prop.get('label')" />
+                                    </td>
+                                    <td>
+                                        <span t-esc="prop.get('value')" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <t t-set="demo_property" t-value="doc._get_property('demo')" />
+                        <t t-if="demo_property">
+                            <h2>Product Demo Property</h2>
+                            <table class="table table-sm o_main_table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 20%;">Code</th>
+                                        <th style="width: 30%;">Label</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span t-esc="demo_property.get('code')" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="demo_property.get('label')" />
+                                        </td>
+                                        <td>
+                                            <span t-esc="demo_property.get('value')" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

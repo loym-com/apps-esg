@@ -1,0 +1,19 @@
+<odoo>
+    <record id="view_product_product_form_inherit" model="ir.ui.view">
+        <field name="name">product.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <sheet position="inside">
+                <group string="Carbon Credits Data History">
+                    <field
+                        name="cc_data_history"
+                        colspan="2"
+                        nolabel="1"
+                        placeholder="This note is for carbon credits data history."
+                    />
+                </group>
+            </sheet>
+        </field>
+    </record>
+</odoo>

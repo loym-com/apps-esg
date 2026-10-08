@@ -1,0 +1,6 @@
+<odoo>
+    <record id="product_attribute_vintage_year" model="product.attribute">
+        <field name="name">Vintage Year</field>
+        <field name="create_variant">always</field>
+    </record>
+</odoo>

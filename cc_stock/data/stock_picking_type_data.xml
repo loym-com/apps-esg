@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_picking_type_cc_mint" model="stock.picking.type">
+            <field name="name">CC Mint</field>
+            <field name="code">dropship</field>
+            <field name="sequence_code">CCMINT</field>
+            <field name="default_location_src_id" ref="stock.stock_location_suppliers"/>
+            <field name="default_location_dest_id" ref="stock.stock_location_customers"/>
+        </record>
+        <record id="stock_picking_type_cc_burn" model="stock.picking.type">
+            <field name="name">CC Burn</field>
+            <field name="code">burn</field>
+            <field name="sequence_code">CCBURN</field>
+            <field name="default_location_src_id" ref="stock.stock_location_customers"/>
+            <field name="default_location_dest_id" ref="stock_location_cc_burned"/>
+        </record>
+        <record id="stock_picking_type_cc_wipe" model="stock.picking.type">
+            <field name="name">CC Wipe</field>
+            <field name="code">wipe</field>
+            <field name="sequence_code">CCWIPE</field>
+            <field name="default_location_src_id" ref="stock.stock_location_customers"/>
+            <field name="default_location_dest_id" ref="stock_location_cc_wiped"/>
+        </record>
+    </data>
+</odoo>

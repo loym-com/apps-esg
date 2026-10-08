@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="property_lang.PropertyDefinition" t-inherit="web.PropertyDefinition" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o_field_property_definition_delete')]" position="attributes">
+            <attribute name="class" remove="float-end" separator=" "/>
+            <attribute name="class" add="d-inline-flex align-items-center" separator=" "/>
+        </xpath>
+        <xpath expr="//button[hasclass('o_field_property_definition_delete')]" position="before">
+            <button
+                t-if="isMultiLang and !props.readonly and props.canChangeDefinition"
+                class="o_field_translate me-2 d-inline-flex align-items-center text-primary bg-transparent border-0 p-0"
+                t-on-click.prevent="onPropertyLabelTranslateClick"
+                type="button"
+            >
+                <t t-esc="lang" />
+            </button>
+        </xpath>
+    </t>
+</templates>
